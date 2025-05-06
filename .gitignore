@@ -1,0 +1,18 @@
+# 환경 변수 파일
+.env
+
+# 가상환경 폴더 (예: .venv, venv)
+.venv/
+venv/
+
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 에디터 설정 (선택)
+.idea/
+.vscode/
+
+# macOS 시스템 파일
+.DS_Store
