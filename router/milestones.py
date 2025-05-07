@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Request
+
+from claude import get_milestone_feedback
 from models.milestones import (
     create_milestone,
     get_user_milestones,
@@ -28,3 +30,10 @@ async def edit_milestone(milestone_id: str, request: Request):
 async def remove_milestone(milestone_id: str):
     result = await delete_milestone(milestone_id)
     return {"deleted_count": str(result.deleted_count)}
+
+@router.get("/milestones/feedback")
+async def add_milestone(request: Request):
+    data = await request.json()
+    milestone = data.get("title")
+    feedback = await get_milestone_feedback(milestone)
+    return {"feedback": feedback}

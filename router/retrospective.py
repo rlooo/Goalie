@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
 
-from claude import get_claude_feedback
+from claude import get_retrospective_feedback
 from models.milestones import get_user_milestones
 from models.retrospective import save_retrospective
 
@@ -19,7 +19,7 @@ async def daily_retrospective(request: Request):
         milestones = await get_user_milestones(user_id)
         milestone_titles = [m["title"] for m in milestones]
 
-        feedback = get_claude_feedback(retrospective, milestone_titles)
+        feedback = await get_retrospective_feedback(retrospective, milestone_titles)
 
         await save_retrospective(user_id, ", ".join(milestone_titles), retrospective, feedback)
 
