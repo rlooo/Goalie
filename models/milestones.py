@@ -24,3 +24,9 @@ async def update_milestone(milestone_id: str, title: str):
 
 async def delete_milestone(milestone_id: str):
     return await milestones.delete_one({"_id": ObjectId(milestone_id)})
+
+def serialize_milestone(doc):
+    return {
+        **doc,
+        "_id": str(doc["_id"])
+    }

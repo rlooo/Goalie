@@ -6,13 +6,15 @@ from models.milestones import (
     get_user_milestones,
     update_milestone,
     delete_milestone,
+    serialize_milestone,
 )
 
 router = APIRouter()
 
 @router.get("/milestones")
 async def list_milestones(user_id: str):
-    return await get_user_milestones(user_id)
+    milestones = await get_user_milestones(user_id)
+    return [serialize_milestone(m) for m in milestones]
 
 @router.post("/milestones")
 async def add_milestone(request: Request):
