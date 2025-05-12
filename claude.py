@@ -8,7 +8,7 @@ load_dotenv()
 API_KEY = os.getenv("ANTHROPIC_API_KEY")
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-async def get_retrospective_feedback(retrospective: str, milestone_list: list[str]):
+async def get_claude_retrospective_feedback(retrospective: str, milestone_list: list[str]):
 
     milestone_text = "\n".join([f"- {m}" for m in milestone_list]) if milestone_list else "(없음)"
 
